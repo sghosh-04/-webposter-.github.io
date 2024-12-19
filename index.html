@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Crafters</title>
+    
+    
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #1a1a1a;
+            color: rgb(128, 124, 124);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, #201d46f4, #2e0c53);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(225, 220, 220, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #dfe5e7;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #f5faff;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #eceff1;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?poster,art') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: rgb(240, 237, 237);
+            
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .hero-content a {
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            color: #0c0c0c;
+            background: #87ceeb;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content a:hover {
+            background: #010910;
+            transform: translateY(-3px);
+        }
+
+        .about {
+            padding: 50px;
+            text-align: left;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f
+            
+        }
+        
+        .about h2 {
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .about p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            color:#dcdcdc;
+        }
+
+        .features {
+            padding: 50px;
+            background: #121212;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .features-grid {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background: #1e1e3f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            color: #f5faff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        } .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 240px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .genres {
+            padding: 50px;
+            background: #1a1a1a;
+            color: #24a0cd;
+            text-align: center;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .genres h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #87ceeb;
+        }
+
+        .genres-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .genre-card {
+            background: #1e1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .genre-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .genre-card img {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+        }
+
+        .genre-card h3 {
+            padding: 15px;
+            color: #f5faff;
+        }
+
+        
+        .reviews-section {
+            text-align: center;
+            margin: 20px;
+            border-top: 5px solid #2a2a4f;
+            
+        }
+        .review-row {
+            display: flex;
+            justify-content: center;
+            gap: 90px; /* Space between items */
+            margin-block: 50px;
+            margin-top: 50px;
+            margin-bottom: 150px; /* Space between rows */
+        }
+        .review-item {
+            text-align: center;
+        }
+        .review-image {
+            width: 200px; /* Set the size of the circle */
+            height: 200px;
+            border-radius: 50%; /* Makes the image circular */
+            object-fit: cover; /* Ensures the image fits the circle */
+            border: 1px solid #286794
+            
+        }
+        .review-name {
+            font-size: 27px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .star-image {
+            width: 150px; /* Set width of the stars image */
+            height: auto;
+            gap: 90px;
+            margin-top: 30px;
+        }
+        
+
+        
+
+        .review:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .review h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .review p {
+            font-size: 1.2em;
+        }
+
+        
+
+        footer {
+            
+            padding: 50px;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #f5faff;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#genres">Genres</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="hero">
+        <div class="hero-content">
+            
+            
+            <style>
+                .container {
+                    padding: 20px; /* Adds space around the text */
+                }
+                .left-align {
+                    text-align: left;
+                    margin-left: 50px; /* Adds extra space to the left */
+                }
+                .centre-align {
+                    text-align: centre;
+                    margin-right: 80px; /* Adds extra space to the right */
+                    margin-left: 80px
+                }
+            </style>
+            
+            <div class="container">
+                <h1 class="centre-align">Welcome to Vibe Crafters</h1>
+                <p class="centre-align">Find your perfect design or create your own masterpiece.</p>
+            </div>
+            <a href="#shop">Start Shopping</a>
+            
+        </div>
+        
+        <style>
+            .container img {
+                width: 60%; /* The image will be 50% of the container's width */
+                height: auto; /* Maintains aspect ratio */
+            }
+        </style>
+        
+        <div class="container">
+            <img src="vc.jpeg" alt="Image Description">
+        </div>
+        
+    </div>
+
+    <section id="about" class="about">
+        <style>
+            .container {
+                padding: 20px; /* Adds space around the text */
+            }
+            .left-align {
+                text-align: left;
+                margin-left: 50px; /* Adds extra space to the left */
+            }
+            .right-align {
+                text-align: right;
+                margin-right: 50px; /* Adds extra space to the right */
+            }
+            .centre-align{
+                text-align: center
+                
+            }
+        </style>   
+        </div>
+        <h2 class="centre-align">About Us</h2>
+        <p class="left-align">At Vibe Crafters, we believe that every wall deserves a story. With a collection of unique, inspiring, and vibrant posters, we help you craft the perfect vibe for your space. From custom designs to trending artwork, we cater to all your aesthetic needs.</p>
+    </section>
+
+    <section id="shop" class="features">
+        
+        <h2 class="centre-align">Our Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Poster 1">
+                <h3>Trending Designs</h3>
+                <p>Explore the latest and trending designs tailored to modern aesthetics.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/474x/fe/85/77/fe8577ae5df9f77168d3c9e57498c816.jpg" alt="Poster 2">
+                <h3>Custom Creations</h3>
+                <p>Create personalized designs that speak your story.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/474x/31/28/c7/3128c7c2d485b0f021bdb7425a9f4b82.jpg" alt="Poster 3">
+                <h3>Premium Quality</h3>
+                <p>Enjoy the finest quality prints with vibrant colors and durability.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="genres" class="genres">
+        <h1>Explore Genres</h1>
+        <div class="genres-grid">
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
+                <h3>Sports</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/2f/de/98/2fde98c959b414caa067d09154c8f86b.jpg" alt="Anime">
+                <h3>Anime</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/fd/d9/fb/fdd9fb6d98f4d6426afbba0688aa8762.jpg" alt="Motivational">
+                <h3>Motivational</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/9e/c8/ba/9ec8bac3119a7127998dc8ade76326db.jpg" alt="Nature">
+                <h3>Nature</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/ab/79/e0/ab79e037d02f6002079d52b7d3c000de.jpg" alt="Manga">
+                <h3>Manga</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/c2/47/6d/c2476d1fb79012b2212b97994b8e43a6.jpg" alt="Comics">
+                <h3>Comics</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/474x/e7/88/82/e7888275d9816a3c5d01e689e27f3dc8.jpg" alt="Movies">
+                <h3>Movies</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/474x/02/9d/58/029d5865b7fd8b5dd13afc44cc215b21.jpg" alt="Music">
+                <h3>Music</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and Culture">
+                <h3>Religion and Culture</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/2b/19/0a/2b190a20b1c9b442c726b220a28a84cd.jpg" alt="Korean">
+                <h3>Korean</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/474x/0e/71/bb/0e71bb162293b8459f67e0810d574bac.jpg" alt="Cars">
+                <h3>Cars</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/c8/25/e6/c825e6fe041f5e87afe7e021342773ad.jpg" alt="Fantasy">
+                <h3>Fantasy</h3>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <div class="reviews-section">
+        <h1 class="centre-align">Reviews</h1>
+        <div class="review-row">
+            <div class="review-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMdBuvbsYu7WYAAUY2AqSQRGNESsYdkucDkQ&s" alt="Reviewer 1" class="review-image">
+                <div class="review-name">Andrea Paulson</div>
+                <img src="s1.webp" alt="5 Stars" class="star-image">
+            </div>
+            <div class="review-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqiGDWxu58BS_M9_hloRMYzZ_f7LMEs8a6qA&s" alt="Reviewer 2" class="review-image">
+                <div class="review-name">Alex Lincon</div>
+                <img src="s1.webp" alt="5 Stars" class="star-image">
+            </div>
+            <div class="review-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJUxCkblyr1O440B2QuCPASmwmdpJ5jWfpFpSU1_Z_a8lrj_Wg9u3Oupve9kDKDwQDbJU&usqp=CAU" alt="Reviewer 3" class="review-image">
+                <div class="review-name">Harvey Volkov</div>
+                <img src="s1.webp" alt="5 Stars" class="star-image">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <style>
+            .container {
+                padding: 20px; /* Adds space around the text */
+            }
+            .left-align {
+                text-align: left;
+                margin-left: 50px; /* Adds extra space to the left */
+            }
+            .right-align {
+                text-align: right;
+                margin-right: 50px; /* Adds extra space to the right */
+            }
+            .centre-align{
+                text-align: center
+                
+            }
+                
+        </style>
+        
+        <div class="container">
+            <h1 class="centre-align">Contact Information</h1><br>
+            <h2 class=".left-align">FOLLOW US ON</h2>
+            <br>
+            <a href="userid">Instagram</a><br>
+            <a href="facebook">Facebook</a>
+        <br>
+        <br>
+            <h2 class=".right-align">EMAIL US AT</h2>
+            <br>
+            <P class= ".right-align">abc@gmail</P><br>
+        </div>
+        <br>
+        <br>
+        <p class="centre-align">&copy; 2024 Vibe Crafters. All Rights Reserved.</p>
+    </footer>    
+</body>
+</html>
